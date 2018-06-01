@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/Cellar/node/9.10.1/bin/node /usr/local/bin/yarn build:dev
+  /usr/local/Cellar/node/9.10.1/bin/node /usr/local/bin/yarn run test
 
 PATH: 
   /Users/timday/.cargo/bin:/Users/timday/miniconda3/bin:/Library/Frameworks/Python.framework/Versions/3.6/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/TeX/texbin:/opt/X11/bin:/opt/ImageMagick/bin:/Applications/Postgres.app/Contents/Versions/latest/bin:/Applications/Sublime:/Applications/Postgres.app/Contents/Versions/latest/bin
@@ -24,6 +24,7 @@ npm manifest:
       "build:dev": "webpack",
       "build:prod": "webpack -p --env production",
       "dev-server": "webpack-dev-server",
+      "test": "jest",
       "build-babel": "babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch",
       "start": "node server/server.js",
       "heroku-postbuild": "yarn run build:prod"
@@ -54,7 +55,7 @@ npm manifest:
       "style-loader": "^0.20.3",
       "uuid": "^3.2.1",
       "validator": "^9.4.1",
-      "webpack": "^4.5.0"yarn
+      "webpack": "^4.5.0"
     },
     "devDependencies": {
       "enzyme": "^3.3.0",
@@ -8520,10 +8521,16 @@ Lockfile:
       yeoman-environment "^2.0.5"
 
 Trace: 
-  SyntaxError: /Users/timday/Desktop/repos/react-boilerplate/expenses-app/package.json: Unexpected token y in JSON at position 1289
-      at JSON.parse (<anonymous>)
-      at /usr/local/lib/node_modules/yarn/lib/cli.js:1036:59
-      at Generator.next (<anonymous>)
-      at step (/usr/local/lib/node_modules/yarn/lib/cli.js:98:30)
-      at /usr/local/lib/node_modules/yarn/lib/cli.js:109:13
-      at <anonymous>
+  Error: Command failed.
+  Exit code: 1
+  Command: sh
+  Arguments: -c jest
+  Directory: /Users/timday/Desktop/repos/react-boilerplate/expenses-app
+  Output:
+  
+      at ProcessTermError.MessageError (/usr/local/lib/node_modules/yarn/lib/cli.js:186:110)
+      at new ProcessTermError (/usr/local/lib/node_modules/yarn/lib/cli.js:226:113)
+      at ChildProcess.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:30281:17)
+      at ChildProcess.emit (events.js:180:13)
+      at maybeClose (internal/child_process.js:936:16)
+      at Process.ChildProcess._handle.onexit (internal/child_process.js:220:5)

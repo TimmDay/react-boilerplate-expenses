@@ -26,6 +26,7 @@ export const removeExpense = ({ id } = {}) => ({
 });
 
 // EDIT_EXPENSE
+// updates is an object with updated fields for reducer
 export const editExpense = (id, updates) => ({
     type: 'EDIT_EXPENSE',
     id,
