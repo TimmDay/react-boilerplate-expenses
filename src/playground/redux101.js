@@ -10,7 +10,8 @@ import { createStore } from 'redux'; //import once to create the store
 // console.log(add({a: 1, b: 2}, 100));
 
 
-// ACTION  GENERATORS - functions that return action objects
+// ACTIONS
+// action generators - functions that return action objects
 // very simple function that takes input in and returns new action object
 // can set a default with = 1
 
@@ -21,7 +22,7 @@ const incrementCount = ({ incrementBy = 1 } = {}) => ({
     incrementBy: incrementBy
 });
 
-const decrementCount = ({ decrementBy = 1} = {}) => ({
+const decrementCount = ({ decrementBy = 1 } = {}) => ({
     type: 'DECREMENT',
     decrementBy: decrementBy
 });
@@ -42,6 +43,7 @@ const resetCount = () => ({
 // 2. Never change state or action. just read off them, and return new state on new object
 
 const countReducer = (state = { count : 0 }, action) => {
+    // console.log('running');
 
     switch (action.type) {
         case 'INCREMENT':
@@ -71,6 +73,7 @@ const store = createStore(countReducer);
 
 //watch for changes to store, do something every time it changes
 const unsubscribe = store.subscribe(()=> {
+    console.log('STATE CHANGE');
     console.log(store.getState());
 });
 
@@ -87,6 +90,7 @@ store.dispatch(incrementCount());
 store.dispatch(decrementCount());
 store.dispatch(decrementCount({ decrementBy: 18}));
 store.dispatch(setCount());
+// unsubscribe();
 store.dispatch(setCount({ count: 222 }));
 store.dispatch(resetCount());
 
@@ -108,6 +112,7 @@ store.dispatch({
 });
 
 unsubscribe();
+
 
 // store.dispatch({
 //     type: 'INCREMENT',

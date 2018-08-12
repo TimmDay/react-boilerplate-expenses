@@ -1,17 +1,22 @@
 Arguments: 
-  /usr/local/Cellar/node/9.10.1/bin/node /usr/local/bin/yarn run test
+  /usr/local/bin/node /usr/local/Cellar/yarn/1.7.0/libexec/bin/yarn.js add chalk
 
 PATH: 
   /Users/timday/.cargo/bin:/Users/timday/miniconda3/bin:/Library/Frameworks/Python.framework/Versions/3.6/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/TeX/texbin:/opt/X11/bin:/opt/ImageMagick/bin:/Applications/Postgres.app/Contents/Versions/latest/bin:/Applications/Sublime:/Applications/Postgres.app/Contents/Versions/latest/bin
 
 Yarn version: 
-  1.5.1
+  1.7.0
 
 Node version: 
-  9.10.1
+  8.11.3
 
 Platform: 
   darwin x64
+
+Trace: 
+  Error: getaddrinfo ENOTFOUND registry.yarnpkg.com registry.yarnpkg.com:443
+      at errnoException (dns.js:50:10)
+      at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:92:26)
 
 npm manifest: 
   {
@@ -24,9 +29,9 @@ npm manifest:
       "build:dev": "webpack",
       "build:prod": "webpack -p --env production",
       "dev-server": "webpack-dev-server",
+      "start": "node server/server.js",
       "test": "jest",
       "build-babel": "babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch",
-      "start": "node server/server.js",
       "heroku-postbuild": "yarn run build:prod"
     },
     "dependencies": {
@@ -8519,18 +8524,3 @@ Lockfile:
       text-table "^0.2.0"
       through2 "^2.0.0"
       yeoman-environment "^2.0.5"
-
-Trace: 
-  Error: Command failed.
-  Exit code: 1
-  Command: sh
-  Arguments: -c jest
-  Directory: /Users/timday/Desktop/repos/react-boilerplate/expenses-app
-  Output:
-  
-      at ProcessTermError.MessageError (/usr/local/lib/node_modules/yarn/lib/cli.js:186:110)
-      at new ProcessTermError (/usr/local/lib/node_modules/yarn/lib/cli.js:226:113)
-      at ChildProcess.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:30281:17)
-      at ChildProcess.emit (events.js:180:13)
-      at maybeClose (internal/child_process.js:936:16)
-      at Process.ChildProcess._handle.onexit (internal/child_process.js:220:5)

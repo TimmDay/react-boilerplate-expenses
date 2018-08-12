@@ -1,7 +1,6 @@
-
-
 import React from 'react';
 import ReactDOM from 'react-dom';
+
 
 const Info = (props) => (
     <div>
@@ -9,6 +8,7 @@ const Info = (props) => (
         <p>the info is: {props.info}</p>
     </div>
 );
+
 
 
 // HOC generator function that returns the ammended component (HOC)
@@ -42,11 +42,12 @@ const requireAuthentication = (WrappedComponent) => {
 };
 
 const AdminInfo = withAdminWarning(Info);
-const AuthInfo = requireAuthentication(Info)
+const AuthInfo = requireAuthentication(Info);
 
 // ReactDOM.render(
 //     <AdminInfo isAdmin={true} info={"details!"}/>, document.getElementById('app')
 // );
+
 
 ReactDOM.render(
     <AuthInfo isAuthenticated={true} info={"details!"}/>, document.getElementById('app')

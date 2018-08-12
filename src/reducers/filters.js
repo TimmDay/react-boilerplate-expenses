@@ -10,6 +10,7 @@ const filtersDefaultState = {
     startDate: moment().startOf('month'),
     endDate: moment().endOf('month')
 };
+
 const filtersReducer = (state = filtersDefaultState, action) => {
     switch(action.type) {
 

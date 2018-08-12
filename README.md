@@ -52,3 +52,8 @@ import 'normalize.css/normalize.css';
 
 moment.js - used in
 react-dates (airbnb) - used in
+
+
+#### Firebase
+a db solution by google
+Create Read Update and Delete (CRUD)

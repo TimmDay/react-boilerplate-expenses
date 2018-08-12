@@ -9,7 +9,6 @@ class ExpenseListFilters extends React.Component {
     // class-based components need 'this' keyword before props
     constructor(props) {
         super(props);
-
     }
 
     state = {
