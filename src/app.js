@@ -11,7 +11,7 @@ import 'normalize.css/normalize.css';
 import './styles/styles.scss';
 import 'react-dates/lib/css/_datepicker.css'; //css for the date picker
 
-import './firebase/firebase';
+import { firebase } from './firebase/firebase';
 // import './playground/promises';
 
 const store = configureStore();
@@ -49,7 +49,13 @@ const jsx = (
 
 ReactDOM.render(jsx, document.getElementById('app'));
 
-
+// firebase.auth().onAuthStateChanged((user) => {
+//     if (user) {
+//         console.log(user, ' logged out');
+//     } else {
+//         console.log(user, ' logged out');
+//     }
+// });
 
 
 // import validator from 'validator';

@@ -1,9 +1,14 @@
 const firebase = require("firebase/app");
-// require("firebase/auth");
+// require("firebase/auth"); // BUG cannot read propert 'navigator' of undefined
 require("firebase/database");
 // require("firebase/firestore");
 // require("firebase/messaging");
 // require("firebase/functions");
+
+// import  * as firebase from 'firebase';
+
+
+
 
 const config = {
     apiKey: "AIzaSyCX0ZPeQO5eSQqZR3i43Vcx1EiFOX82wTc",
@@ -13,11 +18,21 @@ const config = {
     storageBucket: "expensify-4a98e.appspot.com",
     messagingSenderId: "760636718951"
 };
+
 firebase.initializeApp(config);
 const db = firebase.database();
 
+// PROVIDERS - for authentication
+// const googleAuthProvider = firebase.auth().GoogleAuthProvider();
 
+// export{ firebase, googleAuthProvider, db as default };
 export{ firebase, db as default };
+
+
+
+
+
+
 
 // // child_removed
 // db.ref('expenses').on('child_removed', (snapshot) => {
