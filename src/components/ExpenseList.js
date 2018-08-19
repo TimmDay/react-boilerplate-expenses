@@ -4,20 +4,21 @@ import ExpenseListItem from './ExpenseListItem';
 import selectExpenses from './../selectors/expenses';
 
 // use map to iterate over list and render each one
-const ExpenseList = (props) => (
+// export unconnected verion (for testing only)
+export const ExpenseList = (props) => (
     <div>
-        <h1>expense list here</h1>
-
         {
-            props.expenses.map((ex) => (
-                <ExpenseListItem
-                    {...ex}
-                    key = {ex.id}
-                />
-            ))
+            props.expenses.length === 0
+                ? (<p> no expenses </p>)
+                : (
+                props.expenses.map((ex) => (
+                    <ExpenseListItem
+                        key = {ex.id}
+                        {...ex}
+                    />
+                ))
+            )
         }
-
-        {/*{console.log(props)}*/}
     </div>
 );
 

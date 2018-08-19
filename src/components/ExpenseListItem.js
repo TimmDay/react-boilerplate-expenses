@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 
-
 const ExpenseListItem = ({ description, amount, createdAt, id }) => (
     <div>
         <Link to={`/edit/${id}`}>
@@ -13,7 +12,7 @@ const ExpenseListItem = ({ description, amount, createdAt, id }) => (
     </div>
 );
 
-
 export default ExpenseListItem;
 
 // a connect() by itself just gives access to the dispatch
+// export unconnected component for testing. no connected version here so default is fine

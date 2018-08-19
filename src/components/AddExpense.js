@@ -4,28 +4,36 @@ import ExpenseForm from './ExpenseForm';
 // we don't dispatch in expense form, because we want that to be reusable
 // data is different dep on add/edit expense, so dispatch at that level
 import { connect } from 'react-redux'; //connect so we can dispatch to store
-import { addExpense } from "../actions/expenses";
+import { startAddExpense } from "../actions/expenses";
 
 
-const AddExpense = (props) => (
-    <div>
-        <h1>add expense</h1>
+export class AddExpense extends React.Component {
+    onSubmit = (expense) => {
+        this.props.startAddExpense(expense);
+        this.props.history.push('/');
+    };
+    render() {
+        return (
+            <div>
+                <h1>add expense</h1>
 
-        <ExpenseForm
-            onSubmit={(expense)=>{
-                props.dispatch(addExpense(expense)); //add to redux store
-                props.history.push('/');
-            }}
-        />
+                <ExpenseForm
+                    onSubmit={this.onSubmit}
+                />
 
-        <Link to="/">back</Link>
-    </div>
-);
+                <Link to="/">back</Link>
+            </div>
+        )
+    }
+}
 
 // export default AddExpense;
 
+const mapDispatchToProps = (dispatch) => ({
+    startAddExpense: (expense) => dispatch(startAddExpense(expense))
+});
 
-export default connect()(AddExpense);
+export default connect(undefined, mapDispatchToProps)(AddExpense);
 // first parenthesis for mapping state as props, 2nd the component
 // with connect wired up, we can access props.dispatch
 

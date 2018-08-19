@@ -7,10 +7,10 @@ import configureStore from './store/configureStore';
 import { addExpense } from "./actions/expenses";
 import {setTextFilter, sortByAmount} from "./actions/filters";
 import getVisibleExpenses from './selectors/expenses';
-
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
-import 'react-dates/lib/css/_datepicker.css'
+import 'react-dates/lib/css/_datepicker.css'; //css for the date picker
+
 import './firebase/firebase';
 // import './playground/promises';
 

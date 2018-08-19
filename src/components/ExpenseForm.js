@@ -1,8 +1,6 @@
 import React from 'react';
 import moment from 'moment';
 import { SingleDatePicker } from 'react-dates'; // requires moment
-import 'react-dates/lib/css/_datepicker.css'; //css for the date picker
-
 
 
 // this one is reusable.
@@ -43,7 +41,7 @@ export default class ExpenseForm extends React.Component {
         this.setState(() => ({ description: description }));
     };
     onNoteChange = (e) => {
-        e.persist();
+        // e.persist();
         this.setState(() => ({ note: e.target.value}));
     };
     onAmountChange = (e) => {
