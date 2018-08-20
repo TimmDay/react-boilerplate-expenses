@@ -1,4 +1,4 @@
-// import uuid from "uuid";
+import uuid from "uuid"; // not needed when using firebase
 import db from '../firebase/firebase';
 
 // ADD_EXPENSE action generator
@@ -9,7 +9,7 @@ export const addExpense = (expense) => ({
 
 // gives us access to dispatch so we can use it inside inner func
 // move defaults to async wrapper func
-// firebase generates uuid
+// firebase generates auto uuid
 // returning that function only works because we set up redux thunk in the store
 
 export const startAddExpense = (expenseData = {}) => {
@@ -26,20 +26,27 @@ export const startAddExpense = (expenseData = {}) => {
       const expense = { description, note, amount, createdAt };
 
       // db is the firebase connection
-      db.ref('expenses').push(expense).then((ref) => {
-          dispatch(addExpense({ // cannot forget this, or redux store is out of date
-              id: ref.key,
-              ...expense
-          }))
-      });
+      // db.ref('expenses').push(expense).then((ref) => {
+      //     dispatch(addExpense({ // cannot forget this, or redux store is out of date
+      //         id: ref.key,
+      //         ...expense
+      //     }))
+      // });
+      dispatch(addExpense({ //todo the non-firebase way with uuid
+          id: uuid(),
+          ...expense
+      }));
+
   };
 };
+
 
 // REMOVE_EXPENSE
 export const removeExpense = ({ id } = {}) => ({
     type: 'REMOVE_EXPENSE',
     id
 });
+
 
 // EDIT_EXPENSE
 // updates is an object with updated fields for reducer

@@ -41,7 +41,7 @@ export default class ExpenseForm extends React.Component {
         this.setState(() => ({ description: description }));
     };
     onNoteChange = (e) => {
-        // e.persist();
+        e.persist(); //todo why this? If not here, app in browser kaputs when note fiels entered. ut if here, test fails
         this.setState(() => ({ note: e.target.value}));
     };
     onAmountChange = (e) => {
@@ -51,7 +51,6 @@ export default class ExpenseForm extends React.Component {
             this.setState(() => ({ amount: amount }));
         }
     };
-
 
     onDateChange = (createdAt) => {
         if (createdAt) { //prevents user clearing the value

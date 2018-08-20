@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import ExpenseForm from '../../components/ExpenseForm';
 import expenses from '../fixtures/expenses';
-import moment from 'moment';
+import moment from 'moment'; //for testing single date picker
 
 
 test('should render ExpenseForm correctly', () => {
@@ -24,7 +24,7 @@ test('should render error for invalid form submission', () => {
     // simulate the submission of event obj with preventDefault property
     // bc we didnt provide description, the error state triggers and local state will have a string under error
     expect(wrapper).toMatchSnapshot(); //makes sure that no error shows before a submit
-    wrapper.find('form').simulate('submit', {
+    wrapper.find('form').simulate('submit', { //dummy submit with nothing, should set error
         preventDefault: () => {}
     });
     // verify that things changed as expected
@@ -42,9 +42,9 @@ test('should set description on input change', () => {
     const value = 'new description';
     // we want to match the first input (ind 0) which is onDescriptionChange
     wrapper.find('input').at(0).simulate('change', {
-       target: {
-           value: value
-       }
+        target: {
+            value: value
+        }
     });
     expect(wrapper.state('description')).toBe(value);
 });
@@ -57,7 +57,8 @@ test('should set note on textarea change', () => {
     wrapper.find('textarea').simulate('change', {
         target: {
             value: value
-        }
+        },
+        persist: () => {}
     });
     expect(wrapper.state('note')).toBe(value);
 });
@@ -87,6 +88,7 @@ test('should NOT set amount if input INvalid', () => {
 });
 
 
+// test spy -> a mocked function
 test('should call onSubmit prop for valid form submission', () => {
     const onSubmitSpy = jest.fn();
     const wrapper = shallow(<ExpenseForm existingExpense={expenses[0]} onSubmit={onSubmitSpy}/>)
@@ -116,13 +118,13 @@ test('should set new date on date change', () => {
     const wrapper = shallow(<ExpenseForm/>);
 
     //how to trigger the prop from SingleDatePicker
-    wrapper.find('SingleDatePicker').prop('onDateChange')(now);
-    expect(wrapper.state('createdAt')).toEqual(now);
+    wrapper.find('SingleDatePicker').prop('onDateChange')(now); //pass the prop with value down
+    expect(wrapper.state('createdAt')).toEqual(now); //check
 });
 
-test('should set focus true when calenar is focused', () => {
+test('should set focus true when calendar is focused', () => {
     const focused = true;
-    const wrapper = shallow(<ExpenseForm />);
-    wrapper.find('SingleDatePicker').prop('onFocusChange')({ focused });
+    const wrapper = shallow(<ExpenseForm />); //fake render
+    wrapper.find('SingleDatePicker').prop('onFocusChange')({ focused }); //find single date picker within this component, get the prop of.., change it
     expect(wrapper.state('calendarFocused')).toBe(focused);
 });

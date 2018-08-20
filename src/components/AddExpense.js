@@ -6,12 +6,13 @@ import ExpenseForm from './ExpenseForm';
 import { connect } from 'react-redux'; //connect so we can dispatch to store
 import { startAddExpense } from "../actions/expenses";
 
-
+// export so that we can test the unconnected version of the component
 export class AddExpense extends React.Component {
     onSubmit = (expense) => {
         this.props.startAddExpense(expense);
-        this.props.history.push('/');
+        this.props.history.push('/dashboard');
     };
+
     render() {
         return (
             <div>
@@ -21,7 +22,7 @@ export class AddExpense extends React.Component {
                     onSubmit={this.onSubmit}
                 />
 
-                <Link to="/">back</Link>
+                <Link to="/dashboard">back</Link>
             </div>
         )
     }

@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 
 import AppRouter from './routers/AppRouter';
 import configureStore from './store/configureStore';
-import { addExpense } from "./actions/expenses";
+import {addExpense, startAddExpense} from "./actions/expenses";
 import {setTextFilter, sortByAmount} from "./actions/filters";
 import getVisibleExpenses from './selectors/expenses';
 import 'normalize.css/normalize.css';
@@ -18,11 +18,11 @@ const store = configureStore();
 
 // console.log(store.getState());
 
-store.dispatch(addExpense({description: 'bananas', amount: 200}));
-store.dispatch(addExpense({description: 'bananas bill', amount: 200}));
-store.dispatch(addExpense({description: 'water bill', amount: 4000, createdAt: 2525}));
-store.dispatch(addExpense({description: 'rent', amount: 80000}));
-store.dispatch(addExpense({description: 'gas bill', amount: 1000, createdAt: 3000}));
+store.dispatch(startAddExpense({description: 'bananas', amount: 200}));
+store.dispatch(startAddExpense({description: 'bananas bill', amount: 200}));
+store.dispatch(startAddExpense({description: 'water bill', amount: 4000, createdAt: 2525}));
+store.dispatch(startAddExpense({description: 'rent', amount: 80000}));
+store.dispatch(startAddExpense({description: 'gas bill', amount: 1000, createdAt: 3000}));
 
 store.dispatch(setTextFilter('bill'));
 
@@ -40,11 +40,9 @@ const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
 
 // Provider comp requires a prop that references our store that we have set up
 const jsx = (
-
     <Provider store={store}>
         < AppRouter />
     </Provider>
-
 );
 
 ReactDOM.render(jsx, document.getElementById('app'));

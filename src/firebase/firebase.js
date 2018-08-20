@@ -8,8 +8,6 @@ require("firebase/database");
 // import  * as firebase from 'firebase';
 
 
-
-
 const config = {
     apiKey: "AIzaSyCX0ZPeQO5eSQqZR3i43Vcx1EiFOX82wTc",
     authDomain: "expensify-4a98e.firebaseapp.com",
@@ -23,7 +21,7 @@ firebase.initializeApp(config);
 const db = firebase.database();
 
 // PROVIDERS - for authentication
-// const googleAuthProvider = firebase.auth().GoogleAuthProvider();
+// const googleAuthProvider = firebase.auth.GoogleAuthProvider();
 
 // export{ firebase, googleAuthProvider, db as default };
 export{ firebase, db as default };

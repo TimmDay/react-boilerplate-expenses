@@ -21,6 +21,16 @@ exports[`should render Header correctly 1`] = `
         activeClassName="is-active"
         ariaCurrent="true"
         exact={false}
+        to="/dashboard"
+      >
+        dash
+      </NavLink>
+    </li>
+    <li>
+      <NavLink
+        activeClassName="is-active"
+        ariaCurrent="true"
+        exact={false}
         to="/create"
       >
         add expense

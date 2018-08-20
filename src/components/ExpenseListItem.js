@@ -1,13 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
+// import numeral from 'numeral'; // todo yarn add numeral@2.0.6
 
-
-const ExpenseListItem = ({ description, amount, createdAt, id }) => (
+const ExpenseListItem = ({ description = '', amount='', createdAt='', id='-1' } ) => (
     <div>
         <Link to={`/edit/${id}`}>
             <h3>{description}</h3>
         </Link>
-        <p> {amount} - {createdAt} </p>
+
+        <p>
+            ${amount / 100}
+            {/*{numeral(amount / 100).format('$0,0.00')}*/}
+            -
+            {moment(createdAt).format('ddd, Do MMM YYYY')}
+        </p>
+
 
     </div>
 );
