@@ -1,4 +1,4 @@
-const promise = new Promise((resolve, reject) => {
+ const promise = new Promise((resolve, reject) => {
     // any sort of long running task, async js
 
     setTimeout(()=> {

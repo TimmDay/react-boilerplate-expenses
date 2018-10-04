@@ -10,19 +10,21 @@ import getVisibleExpenses from './selectors/expenses';
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
 import 'react-dates/lib/css/_datepicker.css'; //css for the date picker
-
 import { firebase } from './firebase/firebase';
+
+// import { firebase } from './firebase/firebase_old';
 // import './playground/promises';
 
 const store = configureStore();
 
 // console.log(store.getState());
 
-store.dispatch(startAddExpense({description: 'bananas', amount: 200}));
-store.dispatch(startAddExpense({description: 'bananas bill', amount: 200}));
-store.dispatch(startAddExpense({description: 'water bill', amount: 4000, createdAt: 2525}));
-store.dispatch(startAddExpense({description: 'rent', amount: 80000}));
-store.dispatch(startAddExpense({description: 'gas bill', amount: 1000, createdAt: 3000}));
+// todo default expenses test
+// store.dispatch(startAddExpense({description: 'bananas', amount: 200}));
+// store.dispatch(startAddExpense({description: 'bananas bill', amount: 250}));
+// store.dispatch(startAddExpense({description: 'water bill', amount: 4000, createdAt: 2525}));
+// store.dispatch(startAddExpense({description: 'rent', amount: 80000}));
+// store.dispatch(startAddExpense({description: 'gas bill', amount: 1000, createdAt: 3000}));
 
 store.dispatch(setTextFilter('bill'));
 
