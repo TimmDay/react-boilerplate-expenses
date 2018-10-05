@@ -1,13 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import ExpenseList from './ExpenseList';
 import ExpenseListFilters from './ExpenseListFilters';
+import ExpensesSummary from './ExpensesSummary';
 
 const ExpenseDashboardPage = () => (
     <div>
         <p> the dashboard component </p>
-        <ExpenseListFilters />
-        <ExpenseList />
+        < ExpensesSummary />
+        < ExpenseListFilters />
+        < ExpenseList />
     </div>
 );
 

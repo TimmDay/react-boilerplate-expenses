@@ -22,7 +22,9 @@ Docs for those:
 - [SCSS](http://sass-lang.com/guide)
 - [normalize.css](https://necolas.github.io/normalize.css/)
 
-[reacr router](https://reacttraining.com/react-router/web/guides/philosophy)
+[react router](https://reacttraining.com/react-router/web/guides/philosophy)
+[cross-env](https://www.npmjs.com/package/cross-env)
+
 install:
 yarn add react-router
 but if just native or webapps

@@ -22,8 +22,8 @@ export const startAddExpense = (expenseData = {}) => {
 
         const expense = {description, note, amount, createdAt};
 
-        // db is the firebase connection
-        database.ref('expenses').push(expense)
+        // db is the firebase connection. return allows us to chain the returned promise
+        return database.ref('expenses').push(expense)
             .then((ref) => {
                 dispatch(addExpense({ // cannot forget this, or redux store is out of date
                     id: ref.key,
