@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 
 import AppRouter from './routers/AppRouter';
 import configureStore from './store/configureStore';
-import {addExpense, startAddExpense} from "./actions/expenses";
+import { startSetExpenses } from "./actions/expenses";
 import {setTextFilter, sortByAmount} from "./actions/filters";
 import getVisibleExpenses from './selectors/expenses';
 import 'normalize.css/normalize.css';
@@ -12,33 +12,8 @@ import './styles/styles.scss';
 import 'react-dates/lib/css/_datepicker.css'; //css for the date picker
 import { firebase } from './firebase/firebase';
 
-// import { firebase } from './firebase/firebase_old';
-// import './playground/promises';
 
 const store = configureStore();
-
-// console.log(store.getState());
-
-// todo default expenses test
-// store.dispatch(startAddExpense({description: 'bananas', amount: 200}));
-// store.dispatch(startAddExpense({description: 'bananas bill', amount: 250}));
-// store.dispatch(startAddExpense({description: 'water bill', amount: 4000, createdAt: 2525}));
-// store.dispatch(startAddExpense({description: 'rent', amount: 80000}));
-// store.dispatch(startAddExpense({description: 'gas bill', amount: 1000, createdAt: 3000}));
-
-// store.dispatch(setTextFilter('bill'));
-
-// console.log(store.getState());
-
-const state = store.getState();
-const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
-// console.log(visibleExpenses);
-
-// args: func, time to wait ms
-// setTimeout(() => {
-//     store.dispatch(setTextFilter('rent'));
-// }, 3000);
-
 
 // Provider comp requires a prop that references our store that we have set up
 const jsx = (
@@ -47,7 +22,26 @@ const jsx = (
     </Provider>
 );
 
-ReactDOM.render(jsx, document.getElementById('app'));
+// loading window when we are waiting for db return
+ReactDOM.render(<p>loading...</p>, document.getElementById('app'));
+
+store.dispatch(startSetExpenses()).then(() => {
+    ReactDOM.render(jsx, document.getElementById('app'));
+});
+
+
+
+
+
+// store.dispatch(startAddExpense({description: 'bananas', amount: 200}));
+// store.dispatch(startAddExpense({description: 'bananas bill', amount: 250}));
+// store.dispatch(startAddExpense({description: 'water bill', amount: 4000, createdAt: 2525}));
+// store.dispatch(startAddExpense({description: 'rent', amount: 80000}));
+// store.dispatch(startAddExpense({description: 'gas bill', amount: 1000, createdAt: 3000}));
+// store.dispatch(setTextFilter('bill'));
+// console.log(store.getState());
+
+
 
 // firebase.auth().onAuthStateChanged((user) => {
 //     if (user) {
@@ -86,3 +80,8 @@ ReactDOM.render(jsx, document.getElementById('app'));
 // external link, still use anchor tag. But internally, use Link
 
 //NavLink is for navigation. same as Link but with special extras
+
+
+// const state = store.getState();
+// const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
+// console.log(visibleExpenses);

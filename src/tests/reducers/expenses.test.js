@@ -8,13 +8,13 @@ test('should set default state expense reducer', () => {
     expect(state).toEqual([]);
 });
 
-test('should remove expense by ID', () => {
+test('should remove expense by id', () => {
     const action = { type: 'REMOVE_EXPENSE', id: test_expenses[1].id };
     const state = expensesReducer(test_expenses, action);
     expect(state).toEqual([test_expenses[0], test_expenses[2]])
 });
 
-test('should not remove expenses if ID not given', () => {
+test('should not remove expenses if id not given', () => {
     const action = { type: 'REMOVE_EXPENSE', id: -1 };
     const state = expensesReducer(test_expenses, action);
     expect(state).toEqual(test_expenses); //unchanged array
@@ -38,7 +38,7 @@ test('should add an expense', () => {
     expect(state).toEqual([...test_expenses, freshExpense])
 });
 
-test('should edit an expense with valid ID', () => {
+test('should edit an expense with valid id', () => {
     const amount =42;
     const action = {
         type: 'EDIT_EXPENSE',
@@ -48,11 +48,10 @@ test('should edit an expense with valid ID', () => {
         }
     };
     const state = expensesReducer(test_expenses, action);
-
     expect(state[1].amount).toBe(amount);
 });
 
-test('should NOT edit an expense with invalid ID', () => {
+test('should NOT edit an expense with invalid id', () => {
     const amount =42;
     const action = {
         type: 'EDIT_EXPENSE',
@@ -62,6 +61,18 @@ test('should NOT edit an expense with invalid ID', () => {
         }
     };
     const state = expensesReducer(test_expenses, action);
-
     expect(state).toEqual(test_expenses);
+});
+
+// should remove existing expenses
+    //first add some
+// should add provided expenses
+test('should set expenses', () => {
+    const action = {
+        type: 'SET_EXPENSES',
+        expenses: [test_expenses[1]]
+    };
+    //passing in all expenses, but we expect just the single one back
+    const state = expensesReducer(test_expenses, action);
+    expect(state).toEqual([test_expenses[1]]);
 });

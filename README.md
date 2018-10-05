@@ -30,6 +30,7 @@ yarn add react-router
 but if just native or webapps
 web-app: 
 ```
+
 yarn add react-router-dom
 ```
 
@@ -59,3 +60,8 @@ react-dates (airbnb) - used in
 #### Firebase
 a db solution by google
 Create Read Update and Delete (CRUD)
+
+
+#### Heroku
+git push heroku master, after setting up heroku as a remote
+the url will appear at base of terminal readout after deploying

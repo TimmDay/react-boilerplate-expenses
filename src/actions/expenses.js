@@ -1,14 +1,12 @@
-import uuid from "uuid"; // not needed when using firebase
+// ACTION
 import database from '../firebase/firebase';
-
-// ADD_EXPENSE action generator
+import uuid from "uuid"; // not needed when using firebase
 
 
 // gives us access to dispatch so we can use it inside inner func
 // move defaults to async wrapper func
 // firebase generates auto uuid
 // returning that function only works because we set up redux thunk in the store
-
 export const startAddExpense = (expenseData = {}) => {
 
     return (dispatch) => {
@@ -31,12 +29,10 @@ export const startAddExpense = (expenseData = {}) => {
                 }))
             });
 
-
         // dispatch(addExpense({ // the non-firebase way with uuid
         //     id: uuid(),
         //     ...expense
         // }));
-
     };
 };
 
@@ -53,10 +49,41 @@ export const removeExpense = ({id} = {}) => ({
 });
 
 
-// EDIT_EXPENSE
-// updates is an object with updated fields for reducer
+// EDIT_EXPENSE updates is an object with updated fields for reducer
 export const editExpense = (id, updates) => ({
     type: 'EDIT_EXPENSE',
     id,
     updates
 });
+
+// ACTIONS FOR FETCH FROM DB
+
+//SET_EXPENSES
+export const setExpenses = (expenses) => ({
+    type: 'SET_EXPENSES',
+    expenses
+});
+
+// for persisting data saved from a previous session
+export const startSetExpenses = () => {
+    return (dispatch) => {
+        // console.log(database.ref('expenses').once('value')); //todo
+        //fetch all expense data once, from firebase. return for the promise
+
+        return database.ref('expenses').once('value')
+            .then((dataSnapshot) => {
+
+                const dbExpenses = [];
+                dataSnapshot.forEach((childSnapshot) => {
+                    // console.log(childSnapshot.key); //todo
+                    // console.log(childSnapshot.val()); //todo
+                    dbExpenses.push({
+                        id: childSnapshot.key,
+                        ...childSnapshot.val()
+                    })
+                });
+
+                dispatch(setExpenses(dbExpenses)); //dispatch set expenses
+            });
+    }
+};
