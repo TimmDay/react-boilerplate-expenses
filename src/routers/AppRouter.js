@@ -38,5 +38,7 @@ export default AppRouter;
 
 // using a component inside a ROute has some special props with it
 
-// the : the ROute path means to dynamically match whatever comes after this point
+// the : the ROute path means to dynamically match whatever comes after this point (what follows the : can vary, but still match)
 // exact true means do not match if there is stuff after the given path
+
+//props passed by router inc: match.params, history

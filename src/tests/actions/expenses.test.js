@@ -1,6 +1,14 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import {startAddExpense, addExpense, editExpense, removeExpense, setExpenses, startSetExpenses } from "../../actions/expenses";
+import {
+    startAddExpense,
+    addExpense,
+    editExpense,
+    startRemoveExpense,
+    removeExpense,
+    startSetExpenses,
+    setExpenses,
+     } from "../../actions/expenses";
 import expensesFixture from '../fixtures/expenses';
 import database from '../../firebase/firebase';
 
@@ -28,6 +36,30 @@ test('should setup remove expense action object', () => {
     })
 });
 
+// test it 'should remove expenses from firebase'
+// fetch call val on snapshot, if no data, null will be return value. assert that
+// use startRemoveExpense in EditExpensePage instead of remove expense
+// adjust EditExpensePage tests
+
+//mock db has fixtures data sutomatically added before each test
+test('should remove expenses from firebase', (done) => {
+    const mockStore = createMockStore({});
+    const id = expensesFixture[2].id;
+    mockStore.dispatch(startRemoveExpense({ id }))
+        .then(() => {
+            const actions = mockStore.getActions();
+            expect(actions[0]).toEqual({
+                type: 'REMOVE_EXPENSE',
+                id
+            });
+            return database.ref(`expenses/${id}`).once('value');
+        })
+        .then((snapshot) => {
+            expect(snapshot.val()).toBeFalsy(); //ie, null. bc was removed
+            done();
+        });
+});
+
 
 test('should setup up edit expense action object', () => {
     const action = editExpense('123abc', {note: 'a note here'});
@@ -40,7 +72,6 @@ test('should setup up edit expense action object', () => {
     })
 });
 
-//todo change tests to account for thunk middleware and firebase db use
 
 test('should setup add expense action object with provided values', () => {
     const action = addExpense(expensesFixture[2]);
@@ -139,6 +170,9 @@ test('should fetch the expenses from firebase', (done) => {
             done();
         });
 });
+
+
+
 
 // test('should setup add expense action obj with default values', () => {
 //     const action = addExpense();

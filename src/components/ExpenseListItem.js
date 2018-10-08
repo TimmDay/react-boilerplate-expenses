@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import moment from 'moment';
 import numeral from 'numeral';
 
+//link takes the expense id into the url, where the router passes it to match.params.id
 const ExpenseListItem = ({ description = '', amount='', createdAt='', id='-1' } ) => (
     <div>
         <Link to={`/edit/${id}`}>

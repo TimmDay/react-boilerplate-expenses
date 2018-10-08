@@ -12,3 +12,6 @@
 //    "node_modules"
   ]
 }
+
+//todo try upgrading babel to v7, reintroducing firebase new version
+//todo any auth clash? it is with the env preset that the problem was
