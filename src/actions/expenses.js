@@ -57,6 +57,15 @@ export const removeExpense = ({id} = {}) => ({
 
 
 // EDIT_EXPENSE updates is an object with updated fields for reducer
+//update is like set, but doesnt overwrite the parts we dont touch
+export const startEditExpense = (id='', updates={}) => {
+    return (dispatch) => {
+        return database.ref(`expenses/${id}`).update(updates)
+            .then(() => {
+                dispatch(editExpense(id,updates));
+            })
+    }
+};
 export const editExpense = (id, updates) => ({
     type: 'EDIT_EXPENSE',
     id,
