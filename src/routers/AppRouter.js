@@ -42,3 +42,8 @@ export default AppRouter;
 // exact true means do not match if there is stuff after the given path
 
 //props passed by router inc: match.params, history
+
+
+//todo readme
+// https://www.npmjs.com/package/history
+// yarn add

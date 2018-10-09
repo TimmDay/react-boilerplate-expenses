@@ -13,7 +13,7 @@ exports[`should render Header correctly 1`] = `
         exact={true}
         to="/"
       >
-        home
+        log in
       </NavLink>
     </li>
     <li>
@@ -54,6 +54,11 @@ exports[`should render Header correctly 1`] = `
     >
       broken link
     </NavLink>
+    <button
+      onClick={[Function]}
+    >
+      Logout
+    </button>
   </ul>
 </header>
 `;
