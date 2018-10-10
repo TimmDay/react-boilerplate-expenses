@@ -2,10 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
-import AppRouter from './routers/AppRouter';
+import AppRouter, { history } from './routers/AppRouter';
 import configureStore from './store/configureStore';
 import { startSetExpenses } from "./actions/expenses";
-import {setTextFilter, sortByAmount} from "./actions/filters";
+import { login, logout } from "./actions/auth";
 import getVisibleExpenses from './selectors/expenses';
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
@@ -22,22 +22,37 @@ const jsx = (
     </Provider>
 );
 
+let hasRendered = false;
+const renderApp = () => {
+    if (!hasRendered) {
+        ReactDOM.render(jsx, document.getElementById('app'));
+        hasRendered = true;
+    }
+};
+
 // loading window when we are waiting for db return
 ReactDOM.render(<p>loading...</p>, document.getElementById('app'));
 
-store.dispatch(startSetExpenses()).then(() => {
-    ReactDOM.render(jsx, document.getElementById('app'));
-});
-
 
 firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-        console.log('logged in');
-    } else {
-        console.log('logged out');
+    if (user) { //if logged in according to firebase auth.. (inc implicitly logged in from earlier)
+        store.dispatch(login(user.uid)); // tell store, this user already logged in
+        store.dispatch(startSetExpenses()).then(() => { // fetch users expenses
+            renderApp();
+            if (history.location.pathname === '/') { //if on login page, redirect to dash
+                history.push('/dashboard');
+            }
+        });
+
+    } else { //not logged in
+        store.dispatch(logout());
+        renderApp();
+        history.push('/'); //all logged out users to login page always
     }
 });
 
+// block user url nav to other pages, even if logged out
+// router can run authentication check before rendering the specific component
 
 
 
