@@ -34,6 +34,7 @@ const renderApp = () => {
 ReactDOM.render(<p>loading...</p>, document.getElementById('app'));
 
 
+
 firebase.auth().onAuthStateChanged((user) => {
     if (user) { //if logged in according to firebase auth.. (inc implicitly logged in from earlier)
         store.dispatch(login(user.uid)); // tell store, this user already logged in
