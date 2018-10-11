@@ -7,7 +7,8 @@ export const Header = ({ startLogout }) => (
     <header>
         <h1> The Title! </h1>
         <ul>
-            <li><NavLink to="/" activeClassName="is-active" exact={true}>log in</NavLink></li>
+            {/* first link not needed any more*/}
+            {/*<li><NavLink to="/" activeClassName="is-active" exact={true}>log in</NavLink></li> */}
             <li><NavLink to="/dashboard" activeClassName="is-active" exact={false}>dash</NavLink></li>
             <li><NavLink to="/create" activeClassName="is-active" exact={false}>add expense</NavLink></li>
             <li><NavLink to="/help" activeClassName="is-active" exact={false}>help</NavLink></li>

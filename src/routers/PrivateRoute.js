@@ -11,8 +11,8 @@ import Header from '../components/Header';
 
 export const PrivateRoute = ({
     isAuthenticated,
-    component: Component,
-    ...rest
+    component: Component, //renaming the prop, as we need capital first letter for a react render
+    ...rest //exact, path, etc. all the stuff not yet decstructured
 }) => (
 
     <Route {...rest} component={(props) => (
