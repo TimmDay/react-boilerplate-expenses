@@ -1,0 +1,26 @@
+.box-layout {
+  align-items: center;
+  background: url('/images/bg.jpg');
+  background-size: cover;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  width: 100vw;
+}
+
+// browser only has access to what is in the browser. only the public directory
+// '/' to root of the webserver
+
+
+.box-layout__box {
+  background: fade-out(white, .15); //function to create slightly transparent color
+  border-radius: 4px;
+  padding: $l-size $m-size;
+  text-align: center;
+  width: 30rem;
+}
+
+.box-layout__title {
+  margin: 0 0 $m-size 0;
+  line-height: 1;
+}

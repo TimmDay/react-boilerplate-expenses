@@ -4,10 +4,13 @@ import { startLogin } from '../actions/auth';
 
 //can destructure dispatches off of props as arg
 export const LoginPage = ({ startLogin }) => (
-    <div>
-        <button
-            onClick={startLogin}>log in
-        </button>
+    <div className="box-layout">
+        <div className="box-layout__box">
+            <h1 className="box-layout__title">Expense Tracker</h1>
+            <p>You count, and we count for you</p>
+            <button className="button" onClick={startLogin}>Login with Google</button>
+        </div>
+
     </div>
 );
 

@@ -1,10 +1,18 @@
 
 // Colors
+$dark-grey: #333333;
+$blue: #1c88bf;
+$dark-blue: #364051;
+
+
 $red: #A71D36;
 $gold: #B4A16C;
 $grey: #32414A;
 $light-grey: lighten($grey, 65%);
 $light-gold: lighten($gold, 35%);
+
+// Font Size
+$font-size-large: 1.8rem;
 
 // Spacing
 $s-size: 1.2rem;
