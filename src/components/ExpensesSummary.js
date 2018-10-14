@@ -1,5 +1,6 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import numeral from 'numeral';
 import selectExpenses from '../selectors/expenses';
 import selectExpensesTotal from '../selectors/expenses-total';
@@ -15,6 +16,9 @@ export const ExpensesSummary = ({expenseCount, expensesTotal}) => {
                 <h1 className="page-header__title">
                     viewing <span>{expenseCount}</span> {expenseWord} totalling <span>{formattedExpensesTotal}</span>
                 </h1>
+                <div className="page-header_actions">
+                    <Link className="button" to="/create">Add Expense</Link>
+                </div>
             </div>
         </div>
     )

@@ -6,4 +6,18 @@
   font-size: $font-size-large;
   font-weight: 300;
   padding: $s-size;
+
+  display: inline-block; //because links by default do not take into account top+bottm margin and padding
+  text-decoration: none;
+  line-height: 1;
+}
+
+.button--link {
+  background: none;
+  color: white;
+}
+
+.button--secondary {
+  @extend .button; //todo do this, or give the element two classes?
+  background-color: #888888;
 }

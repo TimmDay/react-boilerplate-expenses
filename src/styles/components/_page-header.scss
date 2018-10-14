@@ -1,5 +1,5 @@
 .page-header {
-  background: #f7f7f7;
+  background: $off-white;
   margin-bottom: $l-size;
   padding: $l-size 0; //content containers sets left/right
 }
@@ -10,4 +10,8 @@
   span {
     font-weight: 700;
   }
+}
+
+.page-header_actions {
+  margin-top: $m-size;
 }

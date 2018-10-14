@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import ExpenseForm from './ExpenseForm';
 import {startEditExpense, startRemoveExpense} from "../actions/expenses";
 
@@ -12,24 +12,33 @@ export class EditExpense extends React.Component {
     };
 
     onRemove = () => {
-        this.props.startRemoveExpense({ id: this.props.expense.id });
+        this.props.startRemoveExpense({id: this.props.expense.id});
         this.props.history.push('/dashboard');
     };
 
     render() {
         return (
             <div>
-                {/*<p>editing expense {this.props.match.params.id} </p>*/}
+                <div className="page-header">
+                    <div className="content-container">
+                        <h1 className="page-header__title">edit expense</h1>
+                        {/*<p>editing expense {this.props.match.params.id} </p>*/}
+                    </div>
+                </div>
 
-                {/* populate fields with existing values */}
-                <ExpenseForm
-                    existingExpense={this.props.expense}
-                    onSubmit={this.onSubmit}
-                />
 
-                <button
-                    onClick = {this.onRemove}
-                >Remove</button>
+                <div className="content-container">
+                    <ExpenseForm
+                        existingExpense={this.props.expense}
+                        onSubmit={this.onSubmit}
+                    />
+
+                    <button
+                        className="button--secondary"
+                        onClick={this.onRemove}
+                    >Remove Expense
+                    </button>
+                </div>
             </div>
         )
     }

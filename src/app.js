@@ -11,7 +11,7 @@ import 'normalize.css/normalize.css';
 import './styles/styles.scss';
 import 'react-dates/lib/css/_datepicker.css'; //css for the date picker
 import { firebase } from './firebase/firebase';
-
+import LoadingPage from './components/LoadingPage';
 
 const store = configureStore();
 
@@ -30,8 +30,7 @@ const renderApp = () => {
     }
 };
 
-// loading window when we are waiting for db return
-ReactDOM.render(<p>loading...</p>, document.getElementById('app'));
+ReactDOM.render(< LoadingPage />, document.getElementById('app'));
 
 
 
@@ -51,6 +50,12 @@ firebase.auth().onAuthStateChanged((user) => {
         history.push('/'); //all logged out users to login page always
     }
 });
+
+
+
+
+
+
 
 // block user url nav to other pages, even if logged out
 // router can run authentication check before rendering the specific component

@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import ExpenseForm from './ExpenseForm';
-import { connect } from 'react-redux'; //connect so we can dispatch to store
+import {connect} from 'react-redux'; //connect so we can dispatch to store
 
-import { startAddExpense } from "../actions/expenses";
+import {startAddExpense} from "../actions/expenses";
 
 // export so that we can test the unconnected version of the component
 export class AddExpense extends React.Component {
@@ -15,11 +15,18 @@ export class AddExpense extends React.Component {
     render() {
         return (
             <div>
-                <h1>add expense</h1>
+                <div className="page-header">
+                    <div className="content-container">
+                        <h1 className="page-header__title">add expense</h1>
+                    </div>
+                </div>
 
-                <ExpenseForm
-                    onSubmit={this.onSubmit}
-                />
+
+                <div className="content-container">
+                    <ExpenseForm
+                        onSubmit={this.onSubmit}
+                    />
+                </div>
 
                 <Link to="/dashboard">back</Link>
             </div>
