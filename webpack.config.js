@@ -1,17 +1,17 @@
 const path = require('path'); //to get access to path.join()
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin'); //require in the node version of import
+// const ExtractTextPlugin = require('extract-text-webpack-plugin'); //require in the node version of import
+const ExtractTextPlugin = require("extract-css-chunks-webpack-plugin"); // import (node syntax)
+
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 //process.env.NODE_ENV //production/test/undefined(dev)
 
-
 if (process.env.NODE_ENV === 'test') {
-    require('dotenv').config({ path: '.env.test' });
+    require('dotenv').config({path: '.env.test'});
     // require('dotenv').config({ path: '.env.development' }); //todo
-
 } else if (process.env.NODE_ENV === 'development') {
-    require('dotenv').config({ path: '.env.development' });
+    require('dotenv').config({path: '.env.development'});
 }
 // for production we must use the heroku command line interface
 // heroku config
@@ -21,17 +21,20 @@ if (process.env.NODE_ENV === 'test') {
 
 module.exports = (env) => {
     const isProduction = (env === 'production');
-    const CSSExtract = new ExtractTextPlugin('styles.css');
+    const CSSExtract = new ExtractTextPlugin({filename: 'styles.css'});
 
     return {
         mode: 'development',
         entry: ['babel-polyfill', './src/app.js'],
-        // entry: './src/playground/hoc.js',
+        // entry: './src/playground/consolelog.js',
 
         output: {
             path: path.join(__dirname, 'public', 'dist'),
             filename: 'bundle.js'
         },
+        // plugins: [
+        //     CSSExtract
+        // ],
         module: {
             rules: [{
                 loader: 'babel-loader',
@@ -39,21 +42,33 @@ module.exports = (env) => {
                 exclude: /node_modules/
             }, {
                 test: /\.s?css$/,
-                use: CSSExtract.extract({
-                    use: [
-                        {
-                            loader: 'css-loader',
-                            options: {
-                                sourceMap: true
-                            }
-                        }, {
-                            loader: 'sass-loader',
-                            options: {
-                                sourceMap: true
-                            }
+                use: [
+                    ExtractTextPlugin.loader,
+                    {
+                        loader: "css-loader",
+                        options: {
+                            sourceMap: true
                         }
-                    ]
-                })
+                    },
+                    {
+                        loader: "sass-loader",
+                        options: {
+                            sourceMap: true
+                        }
+                    },
+                    // {
+                    //     loader: 'css-loader',
+                    //     options: {
+                    //         sourceMap: true
+                    //     }
+                    // },
+                    // {
+                    //     loader: 'sass-loader',
+                    //     options: {
+                    //         sourceMap: true
+                    //     }
+                    // }
+                ]
             }]
         },
         plugins: [

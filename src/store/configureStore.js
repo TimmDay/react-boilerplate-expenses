@@ -7,6 +7,7 @@ import authReducer from './../reducers/auth';
 
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+// const composeEnhancers = compose;
 
 export default () => {
 
