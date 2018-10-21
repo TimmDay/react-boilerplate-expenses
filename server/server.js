@@ -1,9 +1,7 @@
-const express = require('express'); // node style import
 const path = require('path');
-
+const express = require('express'); // node style import
 const app = express(); //create new instance
 const publicPath = path.join(__dirname, '..', 'public');
-
 const port = process.env.PORT || 3000; //heroku sets this PORT value
 
 // where files live
