@@ -29,7 +29,8 @@ module.exports = (env) => {
         // entry: './src/playground/consolelog.js',
 
         output: {
-            path: path.join(__dirname, 'public', 'dist'),
+            // path: path.join(__dirname, 'public', 'dist'),
+            path: path.join(__dirname, 'public'),
             filename: 'bundle.js'
         },
         // plugins: [
@@ -85,7 +86,8 @@ module.exports = (env) => {
         devtool: isProduction ? 'source-map' : 'inline-source-map',
         devServer: {
             contentBase: path.join(__dirname, 'public'),
-            publicPath: '/dist/',
+            publicPath: '/',
+            // publicPath: '/dist/',
             historyApiFallback: true
         }
     }
